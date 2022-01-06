@@ -1,0 +1,8 @@
+[user]
+	name = Bruno Pereira
+	email = babp5315@gmail.com
+[credential "https://github.com"]
+    username = brunoabpereira
+	helper = store
+[core]
+	editor = vim

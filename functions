@@ -1,0 +1,73 @@
+#!/bin/bash
+
+# screen record and output to file
+function vidrec(){
+    local res=$(xdpyinfo | grep -oP "dimensions:[\s]*\K[0-9]+x[0-9]+")
+    local out=${1:-out.mp4}
+    ffmpeg -video_size $res -framerate 25 -f x11grab -i ${DISPLAY} $out
+}
+
+# mic record and output to file
+function micrec(){
+    local out=${1:-out.mp3}
+    arecord -f cd - > $out
+}
+
+# mic playback
+function mictest(){
+    arecord -f cd - | aplay -
+}
+
+# set GNOME desktop background to random image in ~/Pictures/Wallpapers
+function setbg(){
+    local dir="$HOME/Pictures/Wallpapers"
+    local img=$(find $dir -type f | grep -E ".(jpg|jpeg|png)$" | shuf -n 1)
+    gsettings set org.gnome.desktop.background picture-uri file:$img
+}
+
+# size of a file or total size of a directory
+function fs() {
+    if du -b /dev/null > /dev/null 2>&1; then
+        local arg=-sbh;
+    else
+        local arg=-sh;
+    fi
+    if [[ -n "$@" ]]; then
+        du $arg -- "$@";
+    else
+        du $arg .[^.]* ./*;
+    fi;
+}
+
+# kill process listening on port $1
+function killport(){
+    kill -9 $(lsof -t -i:$1)
+}
+
+# list processes listening on port $1
+function lsport(){
+    netstat -tulpn | grep :$1
+}
+
+# fires-up a Jupyter notebook by supplying a specific port
+function jpt(){
+    jupyter notebook --no-browser --port=$1
+}
+
+# forwards requests to local port $2 into remote port $3 and listens to it
+# use: ssht user@host ssh_port local_port remote_port
+function ssht(){
+    echo "ssh -p $2 -NL $3:localhost:$4 $1"
+    ssh -p $2 -NL $3:localhost:$4 $1
+}
+
+# unlock/create encrypted folder
+function unlock(){
+    encfs $PWD/.$1 $PWD/$1
+}
+
+# lock/close encrypted folder
+function lock(){
+    fusermount -u $PWD/$1
+    rmdir $PWD/$1
+}
