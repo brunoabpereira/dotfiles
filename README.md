@@ -1,9 +1,9 @@
-# dotfiles
+# dotfiles (smol)
 
 ## install (using [rcm](https://github.com/thoughtbot/rcm))
 1. clone repo
 ```
-git clone https://github.com/brunoabpereira/dotfiles.git ~/.dotfiles
+git clone --branch smol --single-branch https://github.com/brunoabpereira/dotfiles.git ~/.dotfiles
 ```
 2. install dotfiles
 ```
