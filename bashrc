@@ -17,10 +17,10 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias grep='grep --color=auto'
+alias diff='colordiff'
 alias o='clear; octave-cli'
 alias p2='clear; python2'
 alias p3='clear; python3'
-alias diff='colordiff'
 
 if [[ -t 0 && $- = *i* ]]; then
     # remove bash ctrl+S and ctrl+Q binds
@@ -45,19 +45,4 @@ fi
 if [[ -f ~/.functions ]]; then
     source ~/.functions
 fi
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('$HOME/Programs/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "$HOME/Programs/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "$HOME/Programs/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="$HOME/Programs/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
