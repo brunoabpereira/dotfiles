@@ -26,7 +26,7 @@ if [[ -t 0 && $- = *i* ]]; then
     # remove bash ctrl+S and ctrl+Q binds
     stty -ixon
     # remove forward search ctrl+S bind
-    bind -r '\C-s'
+    # bind -r '\C-s'
     # remove bash alt+num binds
     for i in "-" {0..9}; do bind -r "\e$i"; done
 fi
