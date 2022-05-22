@@ -35,10 +35,14 @@ fi
 HISTSIZE=
 HISTFILESIZE=
 
-# open tmux session automatically and closes with ctrl+D (run with "exec")
+# open tmux session automatically
 if [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then
-    # exec tmux
-    tmux &> /dev/null
+     if [ -n "$SSH_CLIENT" ]; then
+         tmux a || tmux
+     else
+         # exec tmux # to close with ctrl+D
+         tmux
+     fi
 fi
 
 # source bash functions
