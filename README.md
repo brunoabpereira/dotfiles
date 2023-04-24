@@ -1,21 +1,13 @@
 # dotfiles
 
 ## install (using [rcm](https://github.com/thoughtbot/rcm))
-1. clone repo
+clone repo and install dotfiles
 ```
-git clone https://github.com/brunoabpereira/dotfiles.git ~/.dotfiles
-```
-2. install dotfiles
-```
-env RCRC=~/.dotfiles/rcrc rcup -vf
+git clone https://github.com/brunoabpereira/dotfiles.git ~/.dotfiles && env RCRC=~/.dotfiles/rcrc rcup -vf
 ```
 
 ## uninstall
-1. uninstall dotfiles 
+uninstall dotfiles and remove dotfiles
 ```
-rcdn
-```
-2. remove dotfiles
-```
-rm -rf ~/.dotfiles
+rcdn && rm -rf ~/.dotfiles
 ```
