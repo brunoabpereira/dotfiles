@@ -1,0 +1,9 @@
+# add directory to PATH if it exists
+function add_to_path{
+   if [ -d "$1" ]; then
+      export PATH=$1:$PATH
+   fi
+}
+
+add_to_path "$HOME/.cargo/env"
+

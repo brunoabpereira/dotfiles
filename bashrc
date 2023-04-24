@@ -14,19 +14,19 @@ alias ll='ls -lF'
 alias la='ls -alF'
 alias mkdir='mkdir -v'
 alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
 alias grep='grep --color=auto'
 alias diff='colordiff'
 alias o='clear; octave-cli'
 alias p2='clear; python2'
 alias p3='clear; python3'
+alias tmuxkill='tmux kill-session -t'
+alias fzf='fzf-tmux'
 
 if [[ -t 0 && $- = *i* ]]; then
     # remove bash ctrl+S and ctrl+Q binds
     stty -ixon
     # remove forward search ctrl+S bind
-    # bind -r '\C-s'
+    #bind -r '\C-s'
     # remove bash alt+num binds
     for i in "-" {0..9}; do bind -r "\e$i"; done
 fi
@@ -40,13 +40,17 @@ if [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then
      if [ -n "$SSH_CLIENT" ]; then
          tmux a || tmux
      else
-         # exec tmux # to close with ctrl+D
+         #exec tmux # exit with ctrl+D
          tmux
      fi
 fi
 
-# source bash functions
+# functions
 if [[ -f ~/.functions ]]; then
     source ~/.functions
 fi
 
+# path
+if [[ -f ~/.path ]]; then
+    source ~/.path
+fi

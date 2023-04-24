@@ -49,11 +49,6 @@ function lsport(){
     netstat -tulpn | grep :$1
 }
 
-# fires-up a Jupyter notebook by supplying a specific port
-function jpt(){
-    jupyter notebook --no-browser --port=$1
-}
-
 # forwards requests to local port $2 into remote port $3 and listens to it
 # use: ssht user@host ssh_port local_port remote_port
 function ssht(){
